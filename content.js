@@ -26,26 +26,48 @@ window.BODA = {
   albumUrl: "",
   playlistUrl: "",
 
+  // Our story. img: drawings or real photos in personajes/ (any .jpg/.webp works).
   story: [
     {
-      year: "20XX",
-      title: { es: "Cómo empezó todo", en: "How it all began" },
+      place: "Schoenstatt",
+      img: "personajes/historia-1.webp",
+      title: { es: "Todo empezó en Schoenstatt", en: "It all began in Schoenstatt" },
       text: {
-        es: "Aquí va cómo os conocisteis, en una o dos frases.",
-        en: "How you two met goes here, in a line or two.",
+        es: "Un encuentro, una conversación… y ya no hubo vuelta atrás.",
+        en: "One meeting, one conversation… and there was no going back.",
       },
     },
     {
-      year: "20XX",
-      title: { es: "Un equipo", en: "A team" },
+      place: { es: "Zúrich", en: "Zurich" },
+      img: "personajes/historia-2.webp",
+      title: { es: "El día a día", en: "Day to day" },
       text: {
-        es: "Un viaje, una mudanza, Zúrich… lo que os hizo equipo.",
-        en: "A trip, a move, Zurich… whatever made you a team.",
+        es: "Tranvías, el lago, cafés y muchos planes juntos.",
+        en: "Trams, the lake, coffees and lots of plans together.",
       },
     },
     {
-      year: "2026",
-      title: { es: "La pregunta", en: "The question" },
+      place: { es: "Perú y Paraguay", en: "Peru & Paraguay" },
+      img: "personajes/historia-3.webp",
+      title: { es: "La aventura", en: "The adventure" },
+      text: {
+        es: "Montañas, caminos y kilómetros que nos unieron todavía más.",
+        en: "Mountains, trails and miles that brought us even closer.",
+      },
+    },
+    {
+      place: { es: "París", en: "Paris" },
+      img: "personajes/historia-4.webp",
+      title: { es: "Siempre nos quedará París", en: "We'll always have Paris" },
+      text: {
+        es: "Paseos junto al Sena y la sensación de que esto iba en serio.",
+        en: "Walks along the Seine and the feeling that this was for real.",
+      },
+    },
+    {
+      place: "Schoenstatt",
+      img: "personajes/historia-5.webp",
+      title: { es: "Donde todo empezó", en: "Back where it all began" },
       text: {
         es: "—¿Te quieres casar conmigo?\n—Sí.",
         en: "—Will you marry me?\n—Yes.",

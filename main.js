@@ -6,7 +6,7 @@
 
   let lang = "es";
   try {
-    lang = localStorage.getItem("lang") || (navigator.language.startsWith("es") ? "es" : "en");
+    lang = localStorage.getItem("lang") || "es";
   } catch {}
 
   const L = (v) => (v == null ? "" : typeof v === "string" ? v : v[lang]);
@@ -44,7 +44,12 @@
     $("#countdown").textContent = days > 0 ? t("countdown").replace("{n}", days) : "";
 
     $("#story").innerHTML = B.story
-      .map((s) => `<li class="reveal"><span class="year">${esc(s.year)}</span><h3>${esc(L(s.title))}</h3><p>${esc(L(s.text))}</p></li>`)
+      .map(
+        (s) => `<li class="reveal">
+          ${s.img ? `<figure><img src="${esc(s.img)}" alt="${esc(L(s.title))}" loading="lazy" width="1200" height="900"></figure>` : ""}
+          <div class="story-text"><span class="place">${esc(L(s.place))}</span><h3>${esc(L(s.title))}</h3><p>${esc(L(s.text))}</p></div>
+        </li>`
+      )
       .join("");
 
     $("#timeline").innerHTML = B.schedule
