@@ -42,7 +42,7 @@
     $("#when").textContent = date
       ? `${fmt(date, { day: "numeric", month: "long", year: "numeric" })} · ${B.city || B.venue.town}`
       : L(B.dateText);
-    const days = date ? Math.ceil((date - Date.now()) / 864e5) : 0;
+    const days = date ? Math.floor((date - Date.now()) / 864e5) : 0;
     $("#countdown").textContent = days > 0 ? t("countdown").replace("{n}", days) : "";
 
     $("#story").innerHTML = B.story
@@ -54,7 +54,7 @@
       )
       .join("");
 
-    const tbc = B.schedule.some((e) => !e.time);
+    const tbc = B.scheduleApprox || B.schedule.some((e) => !e.time);
     $("#timeline-tbc").textContent = tbc ? t("schedule_tbc") : "";
     $("#timeline-tbc").hidden = !tbc;
     $("#timeline").innerHTML = B.schedule

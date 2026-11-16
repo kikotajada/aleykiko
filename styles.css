@@ -112,7 +112,7 @@ a { color: inherit; }
 .timeline h3 { font-size: 26px; }
 .timeline p { margin: 4px 0 0; color: var(--ink-2); }
 .timeline time.tbc { color: var(--ink-2); opacity: .5; }
-.tbc-note { background: none; padding: 0; margin: -4px auto 4px; color: var(--ink-2); font-style: italic; text-align: center; }
+.note.tbc-note { background: none; padding: 0; margin: -4px auto 4px; color: var(--ink-2); font-style: italic; text-align: center; }
 
 /* cards */
 .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 8px; text-align: left; }

@@ -6,7 +6,7 @@ window.BODA = {
 
   // Date only (no time) until the ceremony time is fixed; the site shows the day and the countdown.
   // Once the time is known, write it like "2027-09-18T17:30:00+02:00".
-  date: "2027-09-18",
+  date: "2027-09-18T13:00:00+02:00",
   city: "Madrid", // shown next to the date at the top
   dateText: { es: "18 de septiembre de 2027 · Madrid", en: "18 September 2027 · Madrid" },
 
@@ -80,20 +80,21 @@ window.BODA = {
     },
   ],
 
-  // Times left empty until they're fixed: the site shows "Horarios por confirmar".
+  // Approximate times; set scheduleApprox to false once they're final.
+  scheduleApprox: true,
   schedule: [
-    { time: "", title: { es: "Ceremonia", en: "Ceremony" }, text: { es: "En la iglesia.", en: "At the church." } },
-    { time: "", title: { es: "Cóctel", en: "Cocktails" }, text: { es: "Ya en La Quinta de Jarama.", en: "At La Quinta de Jarama." } },
-    { time: "", title: { es: "Cena", en: "Dinner" }, text: { es: "Discursos cortos. Prometido.", en: "Short speeches. Promise." } },
-    { time: "", title: { es: "Fiesta", en: "Party" }, text: { es: "A bailar.", en: "Time to dance." } },
-    { time: "", title: { es: "Autobuses de vuelta", en: "Buses back" }, text: { es: "El último no espera a nadie.", en: "The last one waits for no one." } },
+    { time: "13:00", title: { es: "Ceremonia", en: "Ceremony" }, text: { es: "En la iglesia. Al terminar, autobuses a la finca.", en: "At the church. Afterwards, buses to the venue." } },
+    { time: "14:30", title: { es: "Cóctel", en: "Cocktails" }, text: { es: "Ya en La Quinta de Jarama.", en: "At La Quinta de Jarama." } },
+    { time: "17:00", title: { es: "Comida", en: "Lunch" }, text: { es: "Discursos cortos. Prometido.", en: "Short speeches. Promise." } },
+    { time: "19:00", title: { es: "Fiesta", en: "Party" }, text: { es: "A bailar.", en: "Time to dance." } },
+    { time: "00:00", title: { es: "Autobús de vuelta", en: "Bus back" }, text: { es: "Hacia medianoche. No espera a nadie.", en: "Around midnight. It waits for no one." } },
   ],
 
   info: [
     {
       tag: { es: "Ceremonia", en: "Ceremony" },
       title: { es: "La iglesia", en: "The church" },
-      text: { es: "La hora también está por confirmar. Os avisaremos en cuanto lo sepamos.", en: "The time is still to be confirmed too. We'll let you know as soon as we can." },
+      text: { es: "La ceremonia será hacia las 13:00. Os confirmaremos iglesia y hora en cuanto lo sepamos.", en: "The ceremony will be around 1 pm. We'll confirm the church and time as soon as we can." },
       map: "church",
     },
     {
@@ -109,8 +110,8 @@ window.BODA = {
       tag: { es: "Transporte", en: "Transport" },
       title: { es: "Autobuses", en: "Buses" },
       text: {
-        es: "Habrá autobús desde Madrid a la iglesia, a la finca y de vuelta. Indícalo al confirmar.",
-        en: "There will be buses from Madrid to the church, the venue and back. Let us know when you RSVP.",
+        es: "Habrá autobuses de la iglesia a la finca y uno de vuelta hacia medianoche. Indícalo al confirmar.",
+        en: "There will be buses from the church to the venue and one back around midnight. Let us know when you RSVP.",
       },
     },
     {
@@ -131,7 +132,7 @@ window.BODA = {
       countdown: "Faltan {n} días",
       story_kicker: "Nuestra historia",
       day_kicker: "El día",
-      schedule_tbc: "Horarios por confirmar",
+      schedule_tbc: "Horarios aproximados",
       info_kicker: "Información",
       open_map: "Ver en el mapa",
       rsvp_kicker: "Confirmación",
@@ -191,7 +192,7 @@ window.BODA = {
       countdown: "{n} days to go",
       story_kicker: "Our story",
       day_kicker: "The day",
-      schedule_tbc: "Times to be confirmed",
+      schedule_tbc: "Approximate times",
       info_kicker: "Information",
       open_map: "View on map",
       rsvp_kicker: "RSVP",
