@@ -4,17 +4,22 @@
 window.BODA = {
   names: ["Ale", "Kiko"],
 
-  // Leave date empty until it's fixed: the site then shows dateText and hides the countdown.
-  date: "", // e.g. "2027-09-25T17:30:00+02:00"
-  dateText: { es: "Otoño de 2027 · Madrid", en: "Autumn 2027 · Madrid" },
+  // Date only (no time) until the ceremony time is fixed; the site shows the day and the countdown.
+  // Once the time is known, write it like "2027-09-18T17:30:00+02:00".
+  date: "2027-09-18",
+  city: "Madrid", // shown next to the date at the top
+  dateText: { es: "18 de septiembre de 2027 · Madrid", en: "18 September 2027 · Madrid" },
 
   church: {
     name: { es: "Iglesia por confirmar", en: "Church to be confirmed" },
     town: "Madrid",
+    confirmed: false, // set to true (and fill name/address) to show the map link
   },
   venue: {
-    name: { es: "Finca por confirmar", en: "Venue to be confirmed" },
-    town: "Madrid",
+    name: "La Quinta de Jarama",
+    town: "San Sebastián de los Reyes",
+    address: "Ctra. de Burgos, km 26, 28700 San Sebastián de los Reyes, Madrid",
+    confirmed: true,
   },
 
   // Google Apps Script web-app URL (see apps-script/LEEME.md). Empty = demo mode.
@@ -75,25 +80,29 @@ window.BODA = {
     },
   ],
 
+  // Times left empty until they're fixed: the site shows "Horarios por confirmar".
   schedule: [
-    { time: "17:30", title: { es: "Ceremonia", en: "Ceremony" }, text: { es: "En la iglesia.", en: "At the church." } },
-    { time: "19:00", title: { es: "Cóctel", en: "Cocktails" }, text: { es: "Ya en la finca, al atardecer.", en: "At the venue, at sunset." } },
-    { time: "21:00", title: { es: "Cena", en: "Dinner" }, text: { es: "Discursos cortos. Prometido.", en: "Short speeches. Promise." } },
-    { time: "23:30", title: { es: "Fiesta", en: "Party" }, text: { es: "A bailar.", en: "Time to dance." } },
-    { time: "04:00", title: { es: "Autobuses de vuelta", en: "Buses back" }, text: { es: "El último no espera a nadie.", en: "The last one waits for no one." } },
+    { time: "", title: { es: "Ceremonia", en: "Ceremony" }, text: { es: "En la iglesia.", en: "At the church." } },
+    { time: "", title: { es: "Cóctel", en: "Cocktails" }, text: { es: "Ya en La Quinta de Jarama.", en: "At La Quinta de Jarama." } },
+    { time: "", title: { es: "Cena", en: "Dinner" }, text: { es: "Discursos cortos. Prometido.", en: "Short speeches. Promise." } },
+    { time: "", title: { es: "Fiesta", en: "Party" }, text: { es: "A bailar.", en: "Time to dance." } },
+    { time: "", title: { es: "Autobuses de vuelta", en: "Buses back" }, text: { es: "El último no espera a nadie.", en: "The last one waits for no one." } },
   ],
 
   info: [
     {
       tag: { es: "Ceremonia", en: "Ceremony" },
       title: { es: "La iglesia", en: "The church" },
-      text: { es: "Dirección y cómo llegar, en cuanto esté confirmada.", en: "Address and directions once confirmed." },
+      text: { es: "La hora también está por confirmar. Os avisaremos en cuanto lo sepamos.", en: "The time is still to be confirmed too. We'll let you know as soon as we can." },
       map: "church",
     },
     {
       tag: { es: "Celebración", en: "Celebration" },
       title: { es: "La finca", en: "The venue" },
-      text: { es: "Dirección, parking y tiempo desde Madrid.", en: "Address, parking and time from Madrid." },
+      text: {
+        es: "Ctra. de Burgos (A-1), km 26, en San Sebastián de los Reyes, a unos 25 km del centro de Madrid.",
+        en: "Ctra. de Burgos (A-1), km 26, in San Sebastián de los Reyes, about 25 km from central Madrid.",
+      },
       map: "venue",
     },
     {
@@ -122,6 +131,7 @@ window.BODA = {
       countdown: "Faltan {n} días",
       story_kicker: "Nuestra historia",
       day_kicker: "El día",
+      schedule_tbc: "Horarios por confirmar",
       info_kicker: "Información",
       open_map: "Ver en el mapa",
       rsvp_kicker: "Confirmación",
@@ -181,6 +191,7 @@ window.BODA = {
       countdown: "{n} days to go",
       story_kicker: "Our story",
       day_kicker: "The day",
+      schedule_tbc: "Times to be confirmed",
       info_kicker: "Information",
       open_map: "View on map",
       rsvp_kicker: "RSVP",

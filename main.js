@@ -36,9 +36,11 @@
     $("#names").innerHTML = `${esc(a)} <em>&amp;</em> ${esc(b)}`;
     $("#names-foot").innerHTML = `${esc(a)} <em>&amp;</em> ${esc(b)}`;
 
-    const date = B.date ? new Date(B.date) : null;
+    // "YYYY-MM-DD" (no time yet) is read as a local date so it never shifts a day by time zone
+    const dOnly = /^\d{4}-\d{2}-\d{2}$/.test(B.date || "");
+    const date = !B.date ? null : dOnly ? new Date(...B.date.split("-").map((n, i) => +n - (i === 1))) : new Date(B.date);
     $("#when").textContent = date
-      ? `${fmt(date, { day: "numeric", month: "long", year: "numeric" })} · ${B.venue.town}`
+      ? `${fmt(date, { day: "numeric", month: "long", year: "numeric" })} · ${B.city || B.venue.town}`
       : L(B.dateText);
     const days = date ? Math.ceil((date - Date.now()) / 864e5) : 0;
     $("#countdown").textContent = days > 0 ? t("countdown").replace("{n}", days) : "";
@@ -52,18 +54,21 @@
       )
       .join("");
 
+    const tbc = B.schedule.some((e) => !e.time);
+    $("#timeline-tbc").textContent = tbc ? t("schedule_tbc") : "";
+    $("#timeline-tbc").hidden = !tbc;
     $("#timeline").innerHTML = B.schedule
-      .map((e) => `<li class="reveal"><time>${esc(e.time)}</time><div><h3>${esc(L(e.title))}</h3><p>${esc(L(e.text))}</p></div></li>`)
+      .map((e) => `<li class="reveal"><time class="${e.time ? "" : "tbc"}">${e.time ? esc(e.time) : "–"}</time><div><h3>${esc(L(e.title))}</h3><p>${esc(L(e.text))}</p></div></li>`)
       .join("");
 
-    const mapUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${L(p.name)}, ${p.town}`)}`;
+    const mapUrl = (p) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${L(p.name)}, ${p.address || p.town}`)}`;
     $("#cards").innerHTML = B.info
       .map((c) => {
         const place = c.map && B[c.map];
         return `<article class="card reveal"><p class="tag">${esc(L(c.tag))}</p><h3>${esc(L(c.title))}</h3>
           ${place ? `<p class="place">${esc(L(place.name))} · ${esc(place.town)}</p>` : ""}
           <p>${esc(L(c.text))}</p>
-          ${place ? `<a class="link" href="${mapUrl(place)}" target="_blank" rel="noopener">${esc(t("open_map"))} →</a>` : ""}</article>`;
+          ${place && place.confirmed !== false ? `<a class="link" href="${mapUrl(place)}" target="_blank" rel="noopener">${esc(t("open_map"))} →</a>` : ""}</article>`;
       })
       .join("");
 
